@@ -4,18 +4,21 @@ import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap";
 import logo from "./assets/psn-Logo-large.jpg";
 
 import
-  {
-    RiNewspaperLine,
-    RiRadarLine,
-    RiBaseStationLine,
-    RiFolderUserLine,
-    RiLogoutBoxLine,
-    RiUserAddLine,
-  } from "react-icons/ri";
+{
+  RiNewspaperLine,
+  RiRadarLine,
+  RiBaseStationLine,
+  RiFolderUserLine,
+  RiLogoutBoxLine,
+  RiUserAddLine,
+  RiCalendarCheckLine,
+  RiUserFollowFill,
+} from "react-icons/ri";
 
 //import { BsPersonFillAdd } from "react-icons/bs";
 
 import styles from "./styles/NewsFeed.module.css";
+import { BsHouseDoorFill } from "react-icons/bs";
 
 function NewsFeed ()
 {
@@ -52,8 +55,8 @@ function NewsFeed ()
             <Col md="auto" className="text-sm-start text-center mb-sm-0 mb-3">
               <img src={ logo } width="125" alt="logo" />
             </Col>
-            <Col className="text-sm-start text-center text-success mb-sm-0 mb-3">
-              <h1>GIM</h1>
+            <Col className="text-sm-start text-center text-primary mb-sm-0 mb-3">
+              <h1>Fitness</h1>
             </Col>
           </Row>
         </Col>
@@ -75,17 +78,17 @@ function NewsFeed ()
                   <ul className="list-group">
                     <Nav.Link>
                       <Link to="" className="text-decoration-none">
-                        <li className="list-group-item fs-5 py-3 text-success shadow">
+                        <li className="list-group-item fs-5 py-3 text-primary shadow">
                           <span>
                             { " " }
-                            <RiNewspaperLine /> Newsfeed
+                            <BsHouseDoorFill /> Home
                           </span>
                         </li>
                       </Link>
                     </Nav.Link>
                     <Nav.Link>
                       <Link to="WorkoutStatus" className="text-decoration-none">
-                        <li className="list-group-item fs-5 py-3 text-success shadow">
+                        <li className="list-group-item fs-5 py-3 text-primary shadow">
                           <span>
                             <RiBaseStationLine /> Workout Status
                           </span>
@@ -94,16 +97,16 @@ function NewsFeed ()
                     </Nav.Link>
                     <Nav.Link>
                       <Link to="WorkoutStatusForm" className="text-decoration-none">
-                        <li className="list-group-item fs-5 py-3 text-success shadow">
+                        <li className="list-group-item fs-5 py-3 text-primary shadow">
                           <span>
-                            <RiBaseStationLine /> Workout Plan
+                            <RiCalendarCheckLine /> Workout Plan
                           </span>
                         </li>
                       </Link>
                     </Nav.Link>
                     <Nav.Link>
                       <li
-                        className={ `list-group-item fs-5 py-3 text-success shadow ${ styles.signOutButton }` }
+                        className={ `list-group-item fs-5 py-3 text-primary shadow ${ styles.signOutButton }` }
                         onClick={ handleClick }
                       >
                         <span>
@@ -113,25 +116,25 @@ function NewsFeed ()
                     </Nav.Link>
                     <Nav.Link>
                       <Link to="following" className="text-decoration-none">
-                        <li className="list-group-item fs-5 py-3 text-success shadow">
+                        <li className="list-group-item fs-5 py-3 text-primary shadow">
                           <span>
-                            <RiRadarLine /> Following
+                            <RiUserFollowFill /> Following
                           </span>
                         </li>
                       </Link>
                     </Nav.Link>
                     <Nav.Link>
                       <Link to="follower" className="text-decoration-none">
-                        <li className="list-group-item fs-5 py-3 text-success shadow">
+                        <li className="list-group-item fs-5 py-3 text-primary shadow">
                           <span>
-                            <RiBaseStationLine /> Followers
+                            <RiUserFollowFill /> Followers
                           </span>
                         </li>
                       </Link>
                     </Nav.Link>
                     <Nav.Link>
                       <Link to="myprofile" className="text-decoration-none">
-                        <li className="list-group-item fs-5 py-3 text-success shadow">
+                        <li className="list-group-item fs-5 py-3 text-primary shadow">
                           <span>
                             <RiFolderUserLine /> My Posts
                           </span>
@@ -140,7 +143,7 @@ function NewsFeed ()
                     </Nav.Link>
                     <Nav.Link>
                       <li
-                        className={ `list-group-item fs-5 py-3 text-success shadow ${ styles.signOutButton }` }
+                        className={ `list-group-item fs-5 py-3 text-primary shadow ${ styles.signOutButton }` }
                         onClick={ handleSignOut }
                       >
                         <span>
