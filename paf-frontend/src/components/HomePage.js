@@ -65,7 +65,7 @@ function HomePage ()
             <img src={ psnLogo } alt="PSN logo" width={ 120 } className="mb-3" />
             <Row>
               <h1 className="text-success mb-3">
-                Fitness Community Building Connection Motivation
+                Join our vibrant community and thrive in your fitness journey.
               </h1>
             </Row>
             <br />
