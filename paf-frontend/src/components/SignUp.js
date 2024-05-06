@@ -157,7 +157,7 @@ function SignUp ()
             </Row>
             <Row className="mb-3">
               <Form.Group as={ Col } md="12" controlId="signInPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Password  :</Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
