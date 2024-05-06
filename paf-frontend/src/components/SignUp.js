@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import { BsFillPersonPlusFill } from "react-icons/bs";
+import { BsEnvelopeFill, BsFillPersonPlusFill, BsMailbox } from "react-icons/bs";
 
 import styles from "./styles/SignUp.module.css";
 import Container from "react-bootstrap/esm/Container";
@@ -128,7 +128,7 @@ function SignUp ()
             </Row>
             <Row className="mb-3">
               <Form.Group as={ Col } md="12" controlId="signInLastName">
-                <Form.Label>Last Name  :</Form.Label>
+                <Form.Label> <RiUser2Fill /> Last Name  :</Form.Label>
                 <Form.Control
                   type="text"
                   name="lastName"
@@ -143,7 +143,7 @@ function SignUp ()
             </Row>
             <Row className="mb-3">
               <Form.Group as={ Col } md="12" controlId="signInEmail">
-                <Form.Label>Email  :</Form.Label>
+                <Form.Label> <BsEnvelopeFill /> Email  :</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
