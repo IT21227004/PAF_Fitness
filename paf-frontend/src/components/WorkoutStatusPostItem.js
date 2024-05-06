@@ -16,7 +16,7 @@ function WorkoutStatusPostItem(props) {
                     </div>
                 </div>
                 <div className="mx-3">
-                    <h3>My Workout Status</h3>
+                    <h3>Workout Status</h3>
                     <div>
                         <p>{props.description}</p>
                         <h5>Distance Ran: {props.distance}</h5>
