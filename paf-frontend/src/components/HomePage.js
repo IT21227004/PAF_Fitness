@@ -64,7 +64,7 @@ function HomePage ()
           <div className={ styles.colWithButtons }>
             <img src={ psnLogo } alt="PSN logo" width={ 120 } className="mb-3" />
             <Row>
-              <h1 className="text-success mb-3">
+              <h1 className="text-primary mb-3">
                 Join our vibrant community and thrive in your fitness journey.
               </h1>
             </Row>
