@@ -7,13 +7,13 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 import
-  {
-    BsFillBookFill,
-    BsGithub,
-    BsFillShareFill,
-    BsFillPersonPlusFill,
-    BsFillCpuFill,
-  } from "react-icons/bs";
+{
+  BsFillBookFill,
+  BsGithub,
+  BsFillShareFill,
+  BsFillPersonPlusFill,
+  BsFillCpuFill,
+} from "react-icons/bs";
 
 import { RiLoginBoxLine } from "react-icons/ri";
 
@@ -40,7 +40,7 @@ function HomePage ()
           <div>
             <Row>
               <h3 className="my-3">
-                <BsFillBookFill /> Fitness
+                Fitness
               </h3>
             </Row>
             {/* <Row>
