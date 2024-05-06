@@ -39,9 +39,9 @@ function HomePage ()
         <Col className={ `${ styles.colContainerLeft } ${ styles.leftBackground }` }>
           <div>
             <Row>
-              <h3 className="my-3">
+              <h2 className="my-3">
                 Fitness
-              </h3>
+              </h2>
             </Row>
             {/* <Row>
               <h3 className="my-3">
