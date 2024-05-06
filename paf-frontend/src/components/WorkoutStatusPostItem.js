@@ -21,7 +21,7 @@ function WorkoutStatusPostItem(props) {
                         <p>{props.description}</p>
                         <h5>Distance Ran: {props.distance}</h5>
                         <h5>Push Ups Count: {props.pushups}</h5>
-                        <p>Weight Lifted: {props.weight}</p>
+                        <h5>Weight Lifted: {props.weight}</h5>
                     </div>
                 </div>
             </Row>
