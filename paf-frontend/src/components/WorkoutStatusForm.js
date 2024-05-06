@@ -74,7 +74,7 @@ const WorkoutStatusForm = ( { onSubmit } ) =>
                 <Form.Control type="number" value={ weight } onChange={ ( e ) => setWeight( e.target.value ) } />
             </Form.Group>
             <Form.Group controlId="description">
-                <Form.Label>Brief Description</Form.Label>
+                <Form.Label>Brief Description -:</Form.Label>
                 <Form.Control as="textarea" value={ description } onChange={ ( e ) => setDescription( e.target.value ) } />
             </Form.Group>
             <Button variant="primary" type="submit">Share Workout Status</Button>
