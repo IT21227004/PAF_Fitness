@@ -112,7 +112,7 @@ function SignUp ()
             </Row>
             <Row className="mb-3">
               <Form.Group as={ Col } md="12" controlId="signInFirstName">
-                <Form.Label>First Name</Form.Label>
+                <Form.Label>First Name  :</Form.Label>
                 <Form.Control
                   type="text"
                   name="firstName"
