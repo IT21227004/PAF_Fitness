@@ -70,8 +70,8 @@ function HomePage ()
             </Row>
             <br />
             <Row>
-              <h3 className="text-success mb-3">
-                Join GainTrain social network today
+              <h3 className="text-primary mb-3">
+                Join Fitness network today
               </h3>
             </Row>{ " " }
             <br />
