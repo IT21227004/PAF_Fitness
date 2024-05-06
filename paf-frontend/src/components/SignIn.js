@@ -14,47 +14,53 @@ import styles from "./styles/SignIn.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { BsEnvelopeFill, BsKeyFill } from "react-icons/bs";
 
-function SignIn() {
-  const [resData, setResData] = useState(null);
+function SignIn ()
+{
+  const [ resData, setResData ] = useState( null );
 
   let navigate = useNavigate();
 
-  const schema = yup.object().shape({
+  const schema = yup.object().shape( {
     email: yup.string().email().required(),
     password: yup.string().required(),
-  });
+  } );
 
-  async function postSignInInfo(inputData) {
-    const response = await axios({
+  async function postSignInInfo ( inputData )
+  {
+    const response = await axios( {
       method: "post",
       url: "/api/v1/users/signin",
       data: {
         email: inputData.email,
         password: inputData.password,
       },
-    });
-    
-    if (response.data !== null && response.data.status === "fail") {
-      showWarningToast(response.data.message);
+    } );
+
+    if ( response.data !== null && response.data.status === "fail" )
+    {
+      showWarningToast( response.data.message );
     }
-    
-    if (response.data !== null && response.data.status === "success") {
-      setResData(response.data);
-      
-      localStorage.setItem("psnUserId", response.data.payload.user.id);
-      localStorage.setItem("psnUserFirstName", response.data.payload.user.firstName);
-      localStorage.setItem("psnUserLastName", response.data.payload.user.lastName);
-      localStorage.setItem("psnUserEmail", response.data.payload.user.email);
-  
-      localStorage.setItem("psnToken", response.data.payload.token);
-      navigate("/newsfeed");
+
+    if ( response.data !== null && response.data.status === "success" )
+    {
+      setResData( response.data );
+
+      localStorage.setItem( "psnUserId", response.data.payload.user.id );
+      localStorage.setItem( "psnUserFirstName", response.data.payload.user.firstName );
+      localStorage.setItem( "psnUserLastName", response.data.payload.user.lastName );
+      localStorage.setItem( "psnUserEmail", response.data.payload.user.email );
+
+      localStorage.setItem( "psnToken", response.data.payload.token );
+      navigate( "/newsfeed" );
     }
 
   }
 
-  function showWarningToast(inputMessage) {
-    toast.warn("Invalid email or password", {
+  function showWarningToast ( inputMessage )
+  {
+    toast.warn( "Invalid email or password", {
       position: "bottom-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -63,25 +69,26 @@ function SignIn() {
       draggable: true,
       progress: undefined,
       theme: "colored",
-    });
-    console.log("toast");
+    } );
+    console.log( "toast" );
   }
 
   return (
-    <Container fluid className={styles.container}>
+    <Container fluid className={ styles.container }>
       <ToastContainer />
       <Formik
-        validationSchema={schema}
-        initialValues={{
+        validationSchema={ schema }
+        initialValues={ {
           email: "",
           password: "",
-        }}
-        onSubmit={(values, {setSubmitting}) => {
-          postSignInInfo(values);
-          setSubmitting(false);
-        }}
+        } }
+        onSubmit={ ( values, { setSubmitting } ) =>
+        {
+          postSignInInfo( values );
+          setSubmitting( false );
+        } }
       >
-        {({
+        { ( {
           handleSubmit,
           handleChange,
           handleBlur,
@@ -89,24 +96,24 @@ function SignIn() {
           touched,
           isInValid,
           errors,
-        }) => (
+        } ) => (
           <Form
             noValidate
-            onSubmit={handleSubmit}
-            className={styles.formContainer}
+            onSubmit={ handleSubmit }
+            className={ styles.formContainer }
           >
             <Row className="mb-5 text-center">
-              <h1 className="text-success">Sign In</h1>
+              <h1 className="text-primary">Sign In</h1>
             </Row>
             <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInEmail">
-                <Form.Label>Email</Form.Label>
+              <Form.Group as={ Col } md="12" controlId="signInEmail">
+                <Form.Label> <BsEnvelopeFill /> Email  :</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  isInvalid={touched.email && errors.email}
+                  value={ values.email }
+                  onChange={ handleChange }
+                  isInvalid={ touched.email && errors.email }
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter a valid email
@@ -114,14 +121,14 @@ function SignIn() {
               </Form.Group>
             </Row>
             <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInPassword">
-                <Form.Label>Password</Form.Label>
+              <Form.Group as={ Col } md="12" controlId="signInPassword">
+                <Form.Label><BsKeyFill /> Password  :</Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  isInvalid={touched.password && errors.password}
+                  value={ values.password }
+                  onChange={ handleChange }
+                  isInvalid={ touched.password && errors.password }
                 />
 
                 <Form.Control.Feedback type="invalid">
@@ -129,11 +136,11 @@ function SignIn() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <Button type="submit" variant="success">
+            <Button type="submit" variant="primary">
               Sign In <RiLoginBoxLine />
             </Button>
           </Form>
-        )}
+        ) }
       </Formik>
     </Container>
   );
