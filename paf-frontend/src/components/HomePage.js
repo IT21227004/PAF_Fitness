@@ -19,7 +19,7 @@ import { RiLoginBoxLine } from "react-icons/ri";
 
 import styles from "./styles/HomePage.module.css";
 
-import psnLogo from "./assets/psn-logo-large.jpeg";
+import psnLogo from "./assets/psn-Logo-large.jpg";
 
 function HomePage ()
 {
