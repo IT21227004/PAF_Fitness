@@ -26,6 +26,8 @@ function AppContainer() {
         <Route path="/newsfeed" element={<NewsFeed />}>
           <Route path="" element={<NewsFeedContent />} />
           <Route path="following" element={<FollowingList />} />
+
+          {/*workout status pages*/}
           <Route path="WorkoutStatusForm" element={<WorkoutPlanForm />} />
           <Route path="WorkoutStatus" element={<WorkoutStatusForm />} />
           {/* <Route path="following" element={<FollowingList />} /> */}
