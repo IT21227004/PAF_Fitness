@@ -15,6 +15,7 @@ import Container from "react-bootstrap/esm/Container";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { RiUser2Fill } from "react-icons/ri";
 
 function SignUp ()
 {
@@ -112,7 +113,7 @@ function SignUp ()
             </Row>
             <Row className="mb-3">
               <Form.Group as={ Col } md="12" controlId="signInFirstName">
-                <Form.Label>First Name  :</Form.Label>
+                <Form.Label> <RiUser2Fill /> First Name  :</Form.Label>
                 <Form.Control
                   type="text"
                   name="firstName"
