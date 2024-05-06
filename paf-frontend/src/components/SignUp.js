@@ -172,7 +172,7 @@ function SignUp ()
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <Button type="submit" variant="success">
+            <Button type="submit" variant="primary">
               Sign Up <BsFillPersonPlusFill />
             </Button>
           </Form>
