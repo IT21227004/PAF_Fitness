@@ -15,7 +15,7 @@ import
   BsFillCpuFill,
 } from "react-icons/bs";
 
-import { RiLoginBoxFill, RiLoginBoxLine, RiLoginCircleLine } from "react-icons/ri";
+import { RiLoginBoxFill, RiLoginBoxLine, RiLoginCircleLine, RiUserAddFill } from "react-icons/ri";
 
 import styles from "./styles/HomePage.module.css";
 
@@ -88,7 +88,7 @@ function HomePage ()
             <Row>
               <Link to="/signup" className={ styles.linkTextFormat }>
                 <Button variant="success" className={ styles.btnHomePage }>
-                  Sign Up <BsFillPersonPlusFill />
+                  Sign Up <RiUserAddFill />
                 </Button>
               </Link>
             </Row>
