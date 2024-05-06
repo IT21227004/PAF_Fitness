@@ -87,7 +87,7 @@ function HomePage ()
             </Row>
             <Row>
               <Link to="/signup" className={ styles.linkTextFormat }>
-                <Button variant="success" className={ styles.btnHomePage }>
+                <Button variant="primary" className={ styles.btnHomePage }>
                   Sign Up <RiUserAddFill />
                 </Button>
               </Link>
