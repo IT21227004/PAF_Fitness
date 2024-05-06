@@ -66,7 +66,7 @@ const WorkoutStatusForm = ( { onSubmit } ) =>
                 <Form.Control type="number" value={ distance } onChange={ ( e ) => setDistance( e.target.value ) } />
             </Form.Group>
             <Form.Group controlId="pushups">
-                <Form.Label>Number of Pushups</Form.Label>
+                <Form.Label>Number of Pushup -:</Form.Label>
                 <Form.Control type="number" value={ pushups } onChange={ ( e ) => setPushups( e.target.value ) } />
             </Form.Group>
             <Form.Group controlId="weight">
