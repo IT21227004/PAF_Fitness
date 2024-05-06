@@ -15,7 +15,7 @@ import
   BsFillCpuFill,
 } from "react-icons/bs";
 
-import { RiLoginBoxLine } from "react-icons/ri";
+import { RiLoginBoxFill, RiLoginBoxLine, RiLoginCircleLine } from "react-icons/ri";
 
 import styles from "./styles/HomePage.module.css";
 
@@ -81,7 +81,7 @@ function HomePage ()
                   variant="primary"
                   className={ `${ styles.btnHomePage } mb-3` }
                 >
-                  Sign In <RiLoginBoxLine />
+                  Sign In <RiLoginBoxFill />
                 </Button>
               </Link>
             </Row>
