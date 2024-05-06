@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import { BsEnvelopeFill, BsFillPersonPlusFill, BsMailbox } from "react-icons/bs";
+import { BsEnvelopeFill, BsFillPersonPlusFill, BsKeyFill, BsMailbox } from "react-icons/bs";
 
 import styles from "./styles/SignUp.module.css";
 import Container from "react-bootstrap/esm/Container";
@@ -158,7 +158,7 @@ function SignUp ()
             </Row>
             <Row className="mb-3">
               <Form.Group as={ Col } md="12" controlId="signInPassword">
-                <Form.Label>Password  :</Form.Label>
+                <Form.Label> <BsKeyFill /> Password  :</Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
