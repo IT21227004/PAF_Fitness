@@ -78,7 +78,7 @@ function HomePage ()
             <Row>
               <Link to="/signin" className={ styles.linkTextFormat }>
                 <Button
-                  variant="success"
+                  variant="primary"
                   className={ `${ styles.btnHomePage } mb-3` }
                 >
                   Sign In <RiLoginBoxLine />
