@@ -26,7 +26,8 @@ function MyProfile() {
 
   return (
     <div>
-      <h1>Post of someone</h1>
+      <h1>My Post Page</h1>
+
       {postList !== null ? (
         postList.map((postItem) => {
           return (

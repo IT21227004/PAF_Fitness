@@ -54,6 +54,7 @@ const WorkoutPlanForm = ({onSubmit}) => {
 
     return (
         <Form onSubmit={handleSubmit}>
+        <h2>Workout Plan Sharing</h2>
             <Form.Group controlId="routine">
                 <Form.Label>Routine</Form.Label>
                 <Form.Control as="textarea" value={routine} onChange={(e) => setRoutine(e.target.value)}/>

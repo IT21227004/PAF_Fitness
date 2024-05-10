@@ -21,7 +21,8 @@ function Profile() {
 
   return (
     <div>
-      <h1>Post of someone</h1>
+      <h1>{userInfo.firstName}'s Profile Page</h1>
+
       {postList !== null ? (
         postList.map((postItem) => {
           return (

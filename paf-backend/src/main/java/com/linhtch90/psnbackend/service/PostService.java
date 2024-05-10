@@ -33,6 +33,47 @@ public class PostService {
         return responseObj;
     }
 
+    public ResponseObjectService updatePost(PostEntity inputPost) {
+    ResponseObjectService responseObj = new ResponseObjectService();
+    Optional<PostEntity> optPost = postRepo.findById(inputPost.getId());
+    if (optPost.isEmpty()) {
+        responseObj.setStatus("fail");
+        responseObj.setMessage("cannot find post id: " + inputPost.getId());
+        responseObj.setPayload(null);
+        return responseObj;
+    } else {
+        // Check if content is null or empty
+        if (inputPost.getContent() == null || inputPost.getContent().isEmpty()) {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("content cannot be null or empty");
+            responseObj.setPayload(null);
+            return responseObj;
+        }
+        postRepo.save(inputPost);
+        responseObj.setStatus("success");
+        responseObj.setMessage("post is updated successfully");
+        responseObj.setPayload(inputPost);
+        return responseObj;
+    }
+}
+
+    public ResponseObjectService deletePost(IdObjectEntity inputPostId) {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        Optional<PostEntity> optPost = postRepo.findById(inputPostId.getId());
+        if (optPost.isEmpty()) {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("cannot find post id: " + inputPostId.getId());
+            responseObj.setPayload(null);
+            return responseObj;
+        } else {
+            postRepo.deleteById(inputPostId.getId());
+            responseObj.setStatus("success");
+            responseObj.setMessage("post is deleted successfully");
+            responseObj.setPayload(null);
+            return responseObj;
+        }
+    }
+
     public ResponseObjectService findPostByUserId(IdObjectEntity inputUserId) {
         ResponseObjectService responseObj = new ResponseObjectService();
         Optional<List<PostEntity>> userPostsOpt = postRepo.findByUserIdOrderByCreatedAtDesc(inputUserId.getId());

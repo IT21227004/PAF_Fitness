@@ -61,6 +61,7 @@ const WorkoutStatusForm = ( { onSubmit } ) =>
 
     return (
         <Form onSubmit={ handleSubmit }>
+        <h2>Workout Status Update</h2>
             <Form.Group controlId="distance">
                 <Form.Label>Distance Ran (miles) -:</Form.Label>
                 <Form.Control type="number" value={ distance } onChange={ ( e ) => setDistance( e.target.value ) } />

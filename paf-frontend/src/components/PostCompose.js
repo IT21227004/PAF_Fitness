@@ -10,14 +10,17 @@ import { getFollowingPosts } from "../feature/followingPost/followingPostSlice";
 
 function PostCompose({ template }) {
   const dispatch = useDispatch();
+
   const storeFollowingPosts = useSelector(
     (state) => state.followingPostReducer.followingPosts
   );
+
   const [userFullname] = useState(
     localStorage.getItem("psnUserFirstName") +
       " " +
       localStorage.getItem("psnUserLastName")
   );
+
   const [userId] = useState(localStorage.getItem("psnUserId"));
   const [postContent, setPostContent] = useState("");
   const [postContentCount, setPostContentCount] = useState(0);
@@ -121,6 +124,7 @@ function PostCompose({ template }) {
       maxWidthOrHeight: 250,
       useWebWorker: true,
     };
+
     try {
       const compressedFile = await imageCompression(imageFile, options);
       fileToBase64(compressedFile, (err, result) => {
@@ -169,6 +173,7 @@ function PostCompose({ template }) {
   return (
     <div className="border rounded-3 border-success p-3 shadow">
       <ToastContainer />
+
       <Form className="d-flex flex-column">
         <Form.Group className="mb-3">
           <Form.Label>
@@ -176,9 +181,11 @@ function PostCompose({ template }) {
               <div className="mx-3">
                 <Hashicon value={userId} size={60} />
               </div>
+
               <div className="fs-4 fw-bold">{userFullname}</div>
             </div>
           </Form.Label>
+
           <Form.Control
             as="textarea"
             row={4}
@@ -189,10 +196,11 @@ function PostCompose({ template }) {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Image (Optional)</Form.Label>
+          <Form.Label>Image or Video (Optional)</Form.Label>
           <Form.Control
             type="file"
             accept=".jpg, .jpeg, .png"
+            multiple
             onChange={onUploadFileChange}
           />
         </Form.Group>
