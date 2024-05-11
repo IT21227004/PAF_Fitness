@@ -34,6 +34,45 @@ public class WorkoutPlanService {
         return responseObj;
     }
 
+public ResponseObjectService editWorkoutPlan(WorkoutPlanEntity updatedWorkoutPlan) {
+    ResponseObjectService responseObj = new ResponseObjectService();
+    Optional<WorkoutPlanEntity> optWorkoutPlan = workoutPlanRepo.findById(updatedWorkoutPlan.getWorkoutPlanID());
+    if (optWorkoutPlan.isPresent()) {
+        WorkoutPlanEntity workoutPlan = optWorkoutPlan.get();
+        workoutPlan.setUserId(updatedWorkoutPlan.getUserId());
+        workoutPlan.setUserFullname(updatedWorkoutPlan.getUserFullname());
+        workoutPlan.setRoutine(updatedWorkoutPlan.getRoutine());
+        workoutPlan.setExercise(updatedWorkoutPlan.getExercise());
+        workoutPlan.setSets(updatedWorkoutPlan.getSets());
+        workoutPlan.setRepetitions(updatedWorkoutPlan.getRepetitions());
+        workoutPlanRepo.save(workoutPlan);
+        responseObj.setStatus("success");
+        responseObj.setMessage("Workout plan updated successfully");
+        responseObj.setPayload(workoutPlan);
+    } else {
+        responseObj.setStatus("fail");
+        responseObj.setMessage("Workout plan not found");
+        responseObj.setPayload(null);
+    }
+    return responseObj;
+}
+
+    public ResponseObjectService deleteWorkoutPlan(String workoutPlanID) {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        Optional<WorkoutPlanEntity> optWorkoutPlan = workoutPlanRepo.findById(workoutPlanID);
+        if (optWorkoutPlan.isPresent()) {
+            workoutPlanRepo.delete(optWorkoutPlan.get());
+            responseObj.setStatus("success");
+            responseObj.setMessage("Workout plan deleted successfully");
+            responseObj.setPayload(null);
+        } else {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("Workout plan not found");
+            responseObj.setPayload(null);
+        }
+        return responseObj;
+    }
+
     public ResponseObjectService findWorkoutPlanByFollowing(IdObjectEntity inputUserId) {
         ResponseObjectService responseObj = new ResponseObjectService();
         Optional<UserEntity> optUser = userRepo.findById(inputUserId.getId());

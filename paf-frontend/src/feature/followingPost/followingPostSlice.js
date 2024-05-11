@@ -97,6 +97,7 @@ async function updatePostAsync(postId, updatedContent) {
 
 export const updatePost = createAsyncThunk(
   "/api/v1/updatepost",
+
   async ({ postId, updatedContent }, { rejectWithValue }) => {
     try {
       const response = await updatePostAsync(postId, updatedContent);
