@@ -36,6 +36,7 @@ function PostItem(props) {
   const [postId, setPostId] = useState(props.postId);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editedContent, setEditedContent] = useState(props.content);
+  // const [propsImageFile, setPropsImageFile] = useState(null);
 
   TimeAgo.addLocale(en);
   const timeAgo = new TimeAgo("en-US");
@@ -90,24 +91,20 @@ function PostItem(props) {
   };
 
   const handleEditSave = async () => {
-    // Close the edit modal
     setShowEditModal(false);
-
-    // Dispatch the updatePost action to update the post on the backend
     try {
       const response = await dispatch(
-        updatePost({ postId: postId, updatedContent: editedContent })
+        updatePost({
+          postId: postId,
+          updatedContent: editedContent,
+        })
       );
       if (response.payload.status === "success") {
-        // Optionally, update the local state or Redux store here
-        // For example, you might want to update the post content in the Redux store or simply show the new content without changing the state
         console.log("Post updated successfully");
       } else {
-        // Handle failure, e.g., show an error message
         console.error("Failed to update post:", response.payload.message);
       }
     } catch (error) {
-      // Handle error, e.g., show an error message
       console.error("Error updating post:", error);
     }
   };

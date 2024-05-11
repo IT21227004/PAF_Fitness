@@ -42,6 +42,8 @@ public class PostService {
         responseObj.setPayload(null);
         return responseObj;
     } else {
+        PostEntity existingPost = optPost.get();
+
         // Check if content is null or empty
         if (inputPost.getContent() == null || inputPost.getContent().isEmpty()) {
             responseObj.setStatus("fail");
@@ -49,10 +51,14 @@ public class PostService {
             responseObj.setPayload(null);
             return responseObj;
         }
-        postRepo.save(inputPost);
+
+        // Update content
+        existingPost.setContent(inputPost.getContent());
+
+        postRepo.save(existingPost);
         responseObj.setStatus("success");
-        responseObj.setMessage("post is updated successfully");
-        responseObj.setPayload(inputPost);
+        responseObj.setMessage("post content is updated successfully");
+        responseObj.setPayload(existingPost);
         return responseObj;
     }
 }

@@ -31,9 +31,10 @@ public class PostController {
     }
     
     @PutMapping("/updatepost/{postId}")
-    public ResponseEntity<ResponseObjectService> updatePost(@RequestBody PostEntity inputPost) {
-        return new ResponseEntity<>(postService.updatePost(inputPost), HttpStatus.OK);
-    }
+public ResponseEntity<ResponseObjectService> updatePost(@PathVariable String postId, @RequestBody PostEntity inputPost) {
+  inputPost.setId(postId);
+  return new ResponseEntity<>(postService.updatePost(inputPost), HttpStatus.OK);
+}
 
     @DeleteMapping("/deletepost/{postId}")
     public ResponseEntity<ResponseObjectService> deletePost(@PathVariable String postId){

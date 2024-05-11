@@ -76,21 +76,36 @@ async function updateShare(postId, currentUserId) {
 
   return response.data;
 }
+async function updatePostAsync(postId, updatedContent) {
+  try {
+    const response = await axios({
+      method: "put",
+      url: `/api/v1/updatepost/${postId}`,
+      headers: {
+        Authorization: localStorage.getItem("psnToken"),
+      },
+      data: {
+        content: updatedContent,
+      },
+    });
 
-async function updatePost(postId, updatedContent) {
-  const response = await axios({
-    method: "put",
-    url: `/api/v1/updatepost/${postId}`,
-    headers: {
-      Authorization: localStorage.getItem("psnToken"),
-    },
-    data: {
-      content: updatedContent,
-    },
-  });
-
-  return response.data;
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 }
+
+export const updatePost = createAsyncThunk(
+  "/api/v1/updatepost",
+  async ({ postId, updatedContent }, { rejectWithValue }) => {
+    try {
+      const response = await updatePostAsync(postId, updatedContent);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 async function deletePostRequest(postId) {
   console.log("Attempting to delete post with ID:", postId);
@@ -167,43 +182,11 @@ export const followingPostSlice = createSlice({
       }
     },
 
-    updatePost: (state, action) => {
-      if (state.followingPosts !== null) {
-        for (let i = 0; i < state.followingPosts.length; i++) {
-          if (state.followingPosts[i].post.id === action.payload.postId) {
-            // Update the post content in the local state
-            state.followingPosts[i].post.content =
-              action.payload.updatedContent;
-
-            // Dispatch the updatePost function to update the post on the backend
-            updatePost(action.payload.postId, action.payload.updatedContent)
-              .then((response) => {
-                if (response.status === "success") {
-                  // Optionally, handle success, e.g., show a success message
-                  console.log("Post updated successfully");
-                } else {
-                  // Optionally, handle failure, e.g., show an error message
-                  console.error("Failed to update post:", response.message);
-                }
-              })
-
-              .catch((error) => {
-                // Optionally, handle error, e.g., show an error message
-                console.error("Error updating post:", error);
-              });
-            break; // Exit the loop after updating the first matching post
-          }
-        }
-      }
-    },
-
     deletePost: (state, action) => {
       const { postId } = action.payload;
-
       state.followingPosts = state.followingPosts.filter(
         (post) => post.id !== postId
       );
-
       deletePostRequest(postId);
     },
   },
