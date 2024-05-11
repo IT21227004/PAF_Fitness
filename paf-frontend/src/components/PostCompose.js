@@ -199,7 +199,7 @@ function PostCompose({ template }) {
           <Form.Label>Image or Video (Optional)</Form.Label>
           <Form.Control
             type="file"
-            accept=".jpg, .jpeg, .png"
+            accept=".jpg, .jpeg, .png, .mp4"
             multiple
             onChange={onUploadFileChange}
           />
