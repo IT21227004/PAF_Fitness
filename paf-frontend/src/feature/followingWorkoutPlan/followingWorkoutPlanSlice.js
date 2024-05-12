@@ -22,15 +22,31 @@ export const getFollowingWorkoutPlans = createAsyncThunk(
   }
 );
 
+export const deleteWorkoutPlan = createAsyncThunk(
+  "workoutPlan/delete",
+  async ({ workoutPlanId }, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(
+        `/api/v1/deleteWorkoutPlan/${workoutPlanId}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("psnToken"),
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const editWorkoutPlan = createAsyncThunk(
   "workoutPlan/edit",
-  async ({ workoutPlanID, updatedWorkoutPlan }, { rejectWithValue }) => {
+  async ({ workoutPlanId, updatedWorkoutPlan }, { rejectWithValue }) => {
     try {
-      console.log("Workout Plan ID in Action Creator:", workoutPlanID);
-      console.log("Updated Workout Plan:", updatedWorkoutPlan);
-
       const response = await axios.put(
-        `/api/v1/editWorkoutPlan/${workoutPlanID}`,
+        `/api/v1/updateWorkoutPlan/${workoutPlanId}`,
         updatedWorkoutPlan,
         {
           headers: {
@@ -45,27 +61,24 @@ export const editWorkoutPlan = createAsyncThunk(
   }
 );
 
-export const deleteWorkoutPlan = createAsyncThunk(
-  "workoutPlan/deleteWorkoutPlan",
-  async ({ workoutPlanID }, { rejectWithValue }) => {
-    console.log("Attempting to delete post with ID:", workoutPlanID);
-
-    try {
-      const response = await axios.delete(
-        `/api/v1/deleteWorkoutPlan/${workoutPlanID}`,
-        {
-          headers: {
-            Authorization: localStorage.getItem("psnToken"),
-          },
-        }
-      );
-      return response.data.payload;
-    } catch (error) {
-      console.error("Error deleting workout plan:", error);
-      return rejectWithValue("Failed to delete workout plan");
-    }
-  }
-);
+// export const deleteWorkoutPlan = createAsyncThunk(
+//   "workoutPlan/delete",
+//   async ({ workoutPlanId }, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.delete(
+//         `/api/v1/updateWorkoutPlan/${workoutPlanId}`,
+//         {
+//           headers: {
+//             Authorization: localStorage.getItem("psnToken"),
+//           },
+//         }
+//       );
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
 
 export const followingWorkoutPlanSlice = createSlice({
   name: "followingWorkoutPlanSlice",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Hashicon } from "@emeraldpay/hashicon-react";
 import { Button, Modal, Row, Form } from "react-bootstrap";
 import { RiPencilLine, RiDeleteBin6Fill } from "react-icons/ri";
@@ -7,36 +7,51 @@ import {
   deleteWorkoutPlan,
   editWorkoutPlan,
 } from "../feature/followingWorkoutPlan/followingWorkoutPlanSlice";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
 
 function WorkoutPlanPostItem(props) {
   const dispatch = useDispatch();
+
   const [editing, setEditing] = useState(false);
-  const [currentWorkoutPlan, setCurrentWorkoutPlan] = useState({ ...props });
+  const [currentWorkoutPlan, setCurrentWorkoutPlan] = useState({
+    ...props,
+  });
+
+  TimeAgo.addLocale(en);
+  const timeAgo = new TimeAgo("en-US");
 
   const handleEditClick = () => {
     setEditing(true);
   };
 
-  console.log("WorkoutPlanPostItem props:", props);
-
   const handleDeleteClick = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (confirmDelete) {
-      console.log("Attempting to delete post with ID:", props.postId);
-      dispatch(deleteWorkoutPlan({ workoutPlanID: props.postId }));
+      console.log("Attempting to delete post with ID:", props.workoutPlanId);
+      dispatch(deleteWorkoutPlan(props.workoutPlanId));
     }
   };
 
-  // WorkoutPlanPostItem.js
+  const handleEditSubmit = async () => {
+    try {
+      console.log("Editing workout plan with ID:", props.workoutPlanId);
 
-  const handleEditSubmit = () => {
-    dispatch(
-      editWorkoutPlan({
-        workoutPlanID: props.postId,
-        updatedWorkoutPlan: currentWorkoutPlan,
-      })
-    );
-    setEditing(false);
+      const response = await dispatch(
+        editWorkoutPlan({
+          workoutPlanId: props.workoutPlanId,
+          updatedWorkoutPlan: currentWorkoutPlan,
+        })
+      );
+      if (response.payload.status === "success") {
+        console.log("Post updated successfully");
+        setEditing(false); // Close the modal after successful update
+      } else {
+        console.error("Failed to update post:", response.payload.message);
+      }
+    } catch (error) {
+      console.error("Error updating post:", error);
+    }
   };
 
   return (
@@ -46,21 +61,25 @@ function WorkoutPlanPostItem(props) {
           <div className="mx-3">
             <Hashicon value={props.userId} size={50} />
           </div>
+
           <div className="d-flex flex-column">
             <div className="fw-bold">
               {props.firstName + " " + props.lastName}
             </div>
           </div>
         </div>
+
         <div className="mx-3">
           <h3>My Workout Plan</h3>
+
           <div>
             <p>Routine: {props.routine}</p>
             <p>Exercise: {props.exercise}</p>
             <p>Sets: {props.sets}</p>
             <p>Repetitions: {props.repetitions}</p>
           </div>
-          <div className="d-flex justify-content-center align-items-center">
+
+          <div className="d-flex justify-content-end align-items-center">
             <div className="mx-3">
               <Button variant="danger" onClick={handleDeleteClick}>
                 <RiDeleteBin6Fill />

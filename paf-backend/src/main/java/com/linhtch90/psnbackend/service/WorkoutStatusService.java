@@ -34,6 +34,41 @@ public class WorkoutStatusService {
         return responseObj;
     }
 
+    public ResponseObjectService updateWorkoutStatus(String workoutStatusId, WorkoutStatusEntity updatedWorkoutStatus) {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        Optional<WorkoutStatusEntity> optWorkoutStatus = workoutStatusRepo.findById(workoutStatusId);
+        if (optWorkoutStatus.isPresent()) {
+            WorkoutStatusEntity workoutStatus = optWorkoutStatus.get();
+            workoutStatus.setUserId(updatedWorkoutStatus.getUserId());
+            workoutStatus.setWorkoutStatus(updatedWorkoutStatus.getWorkoutStatus());
+            workoutStatusRepo.save(workoutStatus);
+            responseObj.setStatus("success");
+            responseObj.setMessage("Workout status updated successfully");
+            responseObj.setPayload(workoutStatus);
+        } else {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("Workout status not found");
+            responseObj.setPayload(null);
+        }
+        return responseObj;
+    }
+
+    public ResponseObjectService deleteWorkoutStatus(String workoutStatusId) {
+        ResponseObjectService responseObj = new ResponseObjectService();
+        Optional<WorkoutStatusEntity> optWorkoutStatus = workoutStatusRepo.findById(workoutStatusId);
+        if (optWorkoutStatus.isPresent()) {
+            workoutStatusRepo.delete(optWorkoutStatus.get());
+            responseObj.setStatus("success");
+            responseObj.setMessage("Workout status deleted successfully");
+            responseObj.setPayload(null);
+        } else {
+            responseObj.setStatus("fail");
+            responseObj.setMessage("Workout status not found");
+            responseObj.setPayload(null);
+        }
+        return responseObj;
+    }
+
     public ResponseObjectService findWorkoutStatusByFollowing(IdObjectEntity inputUserId) {
         ResponseObjectService responseObj = new ResponseObjectService();
         Optional<UserEntity> optUser = userRepo.findById(inputUserId.getId());

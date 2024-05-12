@@ -3,8 +3,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap";
 import logo from "./assets/psn-Logo-large.jpg";
 
-import
-{
+import {
   RiNewspaperLine,
   RiRadarLine,
   RiBaseStationLine,
@@ -20,43 +19,38 @@ import
 import styles from "./styles/NewsFeed.module.css";
 import { BsHouseDoorFill } from "react-icons/bs";
 
-function NewsFeed ()
-{
+function NewsFeed() {
   let navigate = useNavigate();
 
-  function handleClick ( e )
-  {
-    navigate( "/newsfeed/allaccounts" );
+  function handleClick(e) {
+    navigate("/newsfeed/allaccounts");
   }
 
-  function handleSignOut ( e )
-  {
-    localStorage.removeItem( "psnUserId" );
-    localStorage.removeItem( "psnToken" );
-    localStorage.removeItem( "psnUserFirstName" );
-    localStorage.removeItem( "psnUserLastName" );
-    localStorage.removeItem( "psnUserEmail" );
-    navigate( "/" );
+  function handleSignOut(e) {
+    localStorage.removeItem("psnUserId");
+    localStorage.removeItem("psnToken");
+    localStorage.removeItem("psnUserFirstName");
+    localStorage.removeItem("psnUserLastName");
+    localStorage.removeItem("psnUserEmail");
+    navigate("/");
   }
 
-  useEffect( () =>
-  {
-    if ( localStorage.getItem( "psnToken" ) === null )
-    {
-      navigate( "/unauthorized" );
+  useEffect(() => {
+    if (localStorage.getItem("psnToken") === null) {
+      navigate("/unauthorized");
     }
-  } );
+  });
 
   return (
     <Container className="pt-3">
       <Row className="mb-3">
-        <Col md={ 4 }>
+        <Col md={4}>
           <Row className="justify-content-center align-items-center">
             <Col md="auto" className="text-sm-start text-center mb-sm-0 mb-3">
-              <img src={ logo } width="125" alt="logo" />
+              <img src={logo} width="125" alt="logo" />
             </Col>
             <Col className="text-sm-start text-center text-primary mb-sm-0 mb-3">
-              <h1>Fitness</h1>
+              <h1>FITness</h1>
             </Col>
           </Row>
         </Col>
@@ -69,18 +63,18 @@ function NewsFeed ()
         </Col> */}
       </Row>
       <Row>
-        <Col md={ 4 }>
+        <Col md={4}>
           <Navbar bg="light" expand="lg" className="mb-3 mb-sm-0">
-            <Container className={ styles.navbarContainer }>
+            <Container className={styles.navbarContainer}>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse>
-                <Nav className={ styles.navContainer }>
+                <Nav className={styles.navContainer}>
                   <ul className="list-group">
                     <Nav.Link>
                       <Link to="" className="text-decoration-none">
                         <li className="list-group-item fs-5 py-3 text-primary shadow">
                           <span>
-                            { " " }
+                            {" "}
                             <BsHouseDoorFill /> Home
                           </span>
                         </li>
@@ -96,7 +90,10 @@ function NewsFeed ()
                       </Link>
                     </Nav.Link>
                     <Nav.Link>
-                      <Link to="WorkoutStatusForm" className="text-decoration-none">
+                      <Link
+                        to="WorkoutStatusForm"
+                        className="text-decoration-none"
+                      >
                         <li className="list-group-item fs-5 py-3 text-primary shadow">
                           <span>
                             <RiCalendarCheckLine /> Workout Plan
@@ -106,8 +103,8 @@ function NewsFeed ()
                     </Nav.Link>
                     <Nav.Link>
                       <li
-                        className={ `list-group-item fs-5 py-3 text-primary shadow ${ styles.signOutButton }` }
-                        onClick={ handleClick }
+                        className={`list-group-item fs-5 py-3 text-primary shadow ${styles.signOutButton}`}
+                        onClick={handleClick}
                       >
                         <span>
                           <RiUserAddLine /> Add Friends
@@ -143,8 +140,8 @@ function NewsFeed ()
                     </Nav.Link>
                     <Nav.Link>
                       <li
-                        className={ `list-group-item fs-5 py-3 text-primary shadow ${ styles.signOutButton }` }
-                        onClick={ handleSignOut }
+                        className={`list-group-item fs-5 py-3 text-primary shadow ${styles.signOutButton}`}
+                        onClick={handleSignOut}
                       >
                         <span>
                           <RiLogoutBoxLine /> Sign Out
@@ -157,8 +154,8 @@ function NewsFeed ()
             </Container>
           </Navbar>
         </Col>
-        <Col md={ 8 }>
-          <Outlet />{ " " }
+        <Col md={8}>
+          <Outlet />{" "}
         </Col>
       </Row>
     </Container>

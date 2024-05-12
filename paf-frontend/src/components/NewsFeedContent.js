@@ -114,7 +114,7 @@ function NewsFeedContent() {
         })
       ) : (
         <div className="d-flex justify-content-center align-items-center my-5">
-          <Spinner animation="border" variant="success" />
+          <Spinner animation="border" variant="primary" />
         </div>
       )}
     </div>

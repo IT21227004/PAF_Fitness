@@ -34,6 +34,22 @@ public class WorkoutPlanService {
         return responseObj;
     }
 
+    public ResponseObjectService deleteWorkoutPlan(String workoutPlanID) {
+    ResponseObjectService responseObj = new ResponseObjectService();
+    Optional<WorkoutPlanEntity> optWorkoutPlan = workoutPlanRepo.findById(workoutPlanID);
+    if (optWorkoutPlan.isPresent()) {
+        workoutPlanRepo.delete(optWorkoutPlan.get());
+        responseObj.setStatus("success");
+        responseObj.setMessage("Workout plan deleted successfully");
+        responseObj.setPayload(null);
+    } else {
+        responseObj.setStatus("fail");
+        responseObj.setMessage("Workout plan not found");
+        responseObj.setPayload(null);
+    }
+    return responseObj;
+}
+
 public ResponseObjectService editWorkoutPlan(WorkoutPlanEntity updatedWorkoutPlan) {
     ResponseObjectService responseObj = new ResponseObjectService();
     Optional<WorkoutPlanEntity> optWorkoutPlan = workoutPlanRepo.findById(updatedWorkoutPlan.getWorkoutPlanID());
@@ -56,22 +72,6 @@ public ResponseObjectService editWorkoutPlan(WorkoutPlanEntity updatedWorkoutPla
     }
     return responseObj;
 }
-
-    public ResponseObjectService deleteWorkoutPlan(String workoutPlanID) {
-        ResponseObjectService responseObj = new ResponseObjectService();
-        Optional<WorkoutPlanEntity> optWorkoutPlan = workoutPlanRepo.findById(workoutPlanID);
-        if (optWorkoutPlan.isPresent()) {
-            workoutPlanRepo.delete(optWorkoutPlan.get());
-            responseObj.setStatus("success");
-            responseObj.setMessage("Workout plan deleted successfully");
-            responseObj.setPayload(null);
-        } else {
-            responseObj.setStatus("fail");
-            responseObj.setMessage("Workout plan not found");
-            responseObj.setPayload(null);
-        }
-        return responseObj;
-    }
 
     public ResponseObjectService findWorkoutPlanByFollowing(IdObjectEntity inputUserId) {
         ResponseObjectService responseObj = new ResponseObjectService();

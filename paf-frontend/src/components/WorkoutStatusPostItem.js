@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Hashicon } from "@emeraldpay/hashicon-react";
-import { Row } from "react-bootstrap";
+import { Button, Form, Modal, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import {
+  deleteWorkoutStatus,
+  updateWorkoutStatus,
+} from "../feature/followingWorkoutStatus/followingWorkoutStatusSlice";
+import { RiDeleteBin6Fill, RiPencilLine } from "react-icons/ri";
 
 function WorkoutStatusPostItem(props) {
+  const dispatch = useDispatch();
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editedData, setEditedData] = useState({
+    distance: props.distance,
+    pushups: props.pushups,
+    weight: props.weight,
+    description: props.description,
+  });
+
+  const handleEditClick = () => {
+    setShowEditModal(true);
+  };
+
+  const handleEditSave = () => {
+    dispatch(
+      updateWorkoutStatus({
+        workoutStatusId: props.id,
+        updatedWorkoutStatus: editedData,
+      })
+    );
+    setShowEditModal(false);
+  };
+
+  const handleDeleteClick = () => {
+    dispatch(deleteWorkoutStatus(props.id));
+  };
+
   return (
     <div className="border shadow rounded-3 border-primary p-3 mt-3">
       <Row>
@@ -25,7 +58,79 @@ function WorkoutStatusPostItem(props) {
             <h5>Weight Lifted: {props.weight}</h5>
           </div>
         </div>
+
+        <div className="d-flex justify-content-end align-items-center">
+          <div className="mx-3">
+            <Button variant="danger" onClick={handleDeleteClick}>
+              <RiDeleteBin6Fill />
+            </Button>
+          </div>
+          <div className="mx-3">
+            <Button variant="primary" onClick={handleEditClick}>
+              <RiPencilLine />
+            </Button>
+          </div>
+        </div>
       </Row>
+
+      {/* Edit Modal */}
+      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Workout Status</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="distance">
+              <Form.Label>Distance Ran (miles)</Form.Label>
+              <Form.Control
+                type="number"
+                value={editedData.distance}
+                onChange={(e) =>
+                  setEditedData({ ...editedData, distance: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="pushups">
+              <Form.Label>Number of Pushups</Form.Label>
+              <Form.Control
+                type="number"
+                value={editedData.pushups}
+                onChange={(e) =>
+                  setEditedData({ ...editedData, pushups: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="weight">
+              <Form.Label>Weight Lifted (lbs)</Form.Label>
+              <Form.Control
+                type="number"
+                value={editedData.weight}
+                onChange={(e) =>
+                  setEditedData({ ...editedData, weight: e.target.value })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="description">
+              <Form.Label>Brief Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                value={editedData.description}
+                onChange={(e) =>
+                  setEditedData({ ...editedData, description: e.target.value })
+                }
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleEditSave}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

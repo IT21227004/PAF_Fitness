@@ -30,17 +30,17 @@ public class WorkoutPlanController {
         return new ResponseEntity<ResponseObjectService>(workoutPlanService.insertWorkoutPlan(inputWorkoutPlan), HttpStatus.OK);
     }
 
-    @PutMapping("/editWorkoutPlan/{workoutPlanId}")
-public ResponseEntity<ResponseObjectService> editWorkoutPlan(@PathVariable String workoutPlanId, @RequestBody WorkoutPlanEntity updatedWorkoutPlan) {
-    updatedWorkoutPlan.setWorkoutPlanID(workoutPlanId);
-    return new ResponseEntity<ResponseObjectService>(workoutPlanService.editWorkoutPlan(updatedWorkoutPlan), HttpStatus.OK);
-}
+    @PutMapping("/updateWorkoutPlan/{workoutPlanId}")
+    public ResponseEntity<ResponseObjectService> editWorkoutPlan(@PathVariable String workoutPlanId, @RequestBody WorkoutPlanEntity updatedWorkoutPlan) {
+        updatedWorkoutPlan.setWorkoutPlanID(workoutPlanId);
+        return new ResponseEntity<ResponseObjectService>(workoutPlanService.editWorkoutPlan(updatedWorkoutPlan), HttpStatus.OK);
+    }
 
-    @DeleteMapping("/deleteWorkoutPlan/{workoutPlanID}")
-    public ResponseEntity<ResponseObjectService> deleteWorkoutPlan(@PathVariable String workoutPlanID) {
+    @DeleteMapping("/deleteWorkoutPlan/{workoutPlanId}")
+    public ResponseEntity<ResponseObjectService> deleteWorkoutPlan(@PathVariable String workoutPlanId) {
         IdObjectEntity deleteWorkoutPlan = new IdObjectEntity();
-        deleteWorkoutPlan.setId(workoutPlanID);
-        return new ResponseEntity<ResponseObjectService>(workoutPlanService.deleteWorkoutPlan(workoutPlanID), HttpStatus.OK);
+        deleteWorkoutPlan.setId(workoutPlanId);
+        return new ResponseEntity<ResponseObjectService>(workoutPlanService.deleteWorkoutPlan(workoutPlanId), HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/followingWorkoutPlan")

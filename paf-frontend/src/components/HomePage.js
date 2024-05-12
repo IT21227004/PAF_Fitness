@@ -6,8 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import
-{
+import {
   BsFillBookFill,
   BsGithub,
   BsFillShareFill,
@@ -15,33 +14,33 @@ import
   BsFillCpuFill,
 } from "react-icons/bs";
 
-import { RiLoginBoxFill, RiLoginBoxLine, RiLoginCircleLine, RiUserAddFill } from "react-icons/ri";
+import {
+  RiLoginBoxFill,
+  RiLoginBoxLine,
+  RiLoginCircleLine,
+  RiUserAddFill,
+} from "react-icons/ri";
 
 import styles from "./styles/HomePage.module.css";
 
 import psnLogo from "./assets/psn-Logo-large.jpg";
 
-function HomePage ()
-{
+function HomePage() {
   const navigate = useNavigate();
 
-  useEffect( () =>
-  {
-    if ( localStorage.getItem( "psnToken" ) !== null )
-    {
-      navigate( "/newsfeed" );
+  useEffect(() => {
+    if (localStorage.getItem("psnToken") !== null) {
+      navigate("/newsfeed");
     }
-  } );
+  });
 
   return (
     <Container fluid>
-      <Row className={ styles.container }>
-        <Col className={ `${ styles.colContainerLeft } ${ styles.leftBackground }` }>
+      <Row className={styles.container}>
+        <Col className={`${styles.colContainerLeft} ${styles.leftBackground}`}>
           <div>
             <Row>
-              <h2 className="my-3">
-                Fitness
-              </h2>
+              <h2 className="my-3">FITness</h2>
             </Row>
             {/* <Row>
               <h3 className="my-3">
@@ -60,9 +59,9 @@ function HomePage ()
             </Row> */}
           </div>
         </Col>
-        <Col className={ styles.colContainerRight }>
-          <div className={ styles.colWithButtons }>
-            <img src={ psnLogo } alt="PSN logo" width={ 120 } className="mb-3" />
+        <Col className={styles.colContainerRight}>
+          <div className={styles.colWithButtons}>
+            <img src={psnLogo} alt="PSN logo" width={120} className="mb-3" />
             <Row>
               <h1 className="text-primary mb-3">
                 Join our vibrant community and thrive in your fitness journey.
@@ -70,24 +69,22 @@ function HomePage ()
             </Row>
             <br />
             <Row>
-              <h3 className="text-primary mb-3">
-                Join Fitness network today
-              </h3>
-            </Row>{ " " }
+              <h3 className="text-primary mb-3">Join Fitness network today</h3>
+            </Row>{" "}
             <br />
             <Row>
-              <Link to="/signin" className={ styles.linkTextFormat }>
+              <Link to="/signin" className={styles.linkTextFormat}>
                 <Button
                   variant="primary"
-                  className={ `${ styles.btnHomePage } mb-3` }
+                  className={`${styles.btnHomePage} mb-3`}
                 >
                   Sign In <RiLoginBoxFill />
                 </Button>
               </Link>
             </Row>
             <Row>
-              <Link to="/signup" className={ styles.linkTextFormat }>
-                <Button variant="primary" className={ styles.btnHomePage }>
+              <Link to="/signup" className={styles.linkTextFormat}>
+                <Button variant="primary" className={styles.btnHomePage}>
                   Sign Up <RiUserAddFill />
                 </Button>
               </Link>
